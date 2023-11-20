@@ -8,21 +8,26 @@ Plane::Plane(QSize scrSize, QWidget *parent)
     : QWidget{parent}
 {
     scene = new QGraphicsScene(this);
-    view = new QGraphicsView(scene, this);
+    view = new MyGraphicsView(scene, this);
 
     int x = scrSize.width() / 2;
     int y = scrSize.height() / 2;
     int div = 30;
 
+    QGraphicsTextItem *text = scene->addText("x");
+    text->setPos(x, div);
+    text = scene->addText("y");
+    text->setPos(-div, -y);
+
     for (int i = -x; i <= x; i += div)
     {
-        QGraphicsTextItem *text = scene->addText(QString::number(i / div));
+        text = scene->addText(QString::number(i / div));
         text->setPos(i, 0);
     }
 
     for (int i = -y; i <= y; i += div)
     {
-        QGraphicsTextItem *text = scene->addText(QString::number(- i / div));
+        text = scene->addText(QString::number(- i / div));
         text->setPos(0, i);
     }
 
@@ -37,8 +42,6 @@ Plane::Plane(QSize scrSize, QWidget *parent)
 
     scene->addLine(-x, 0, x, 0, QPen(Qt::black));
     scene->addLine(0, -y, 0, y, QPen(Qt::black));
-
-    view = new QGraphicsView(scene, this);
     view->setGeometry(QRect({0, 0}, scrSize));
 }
 

@@ -6,6 +6,7 @@
 #include <QGraphicsTextItem>
 #include <QWidget>
 #include <QFile>
+#include <mygraphicsview.h>
 
 class Plane : public QWidget
 {
@@ -20,7 +21,7 @@ public:
 
 private:
     QGraphicsScene *scene;
-    QGraphicsView *view;
+    MyGraphicsView *view;
 public:
     QFile data;
 

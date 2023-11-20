@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <iostream>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -70,7 +71,8 @@ void MainWindow::iterations()
     plane->iterations(QPoint(x1->value(), y1->value()), QPoint(x2->value(), y2->value()));
     auto stop = std::chrono::steady_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
-    qDebug() << "time by iterations method: " << duration.count() << "ns\n";
+    QTextStream out(stdout);
+    out << "time by iterations method: " << duration.count() << "ns\n";
     plane->show();
 }
 
@@ -81,7 +83,8 @@ void MainWindow::dda()
     plane->dda(QPoint(x1->value(), y1->value()), QPoint(x2->value(), y2->value()));
     auto stop = std::chrono::steady_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
-    qDebug() << "time by dda line method: " << duration.count() << "ns\n";
+    QTextStream out(stdout);
+    out << "time by dda line method: " << duration.count() << "ns\n";
     plane->show();
 }
 
@@ -93,7 +96,8 @@ void MainWindow::bresenham()
     plane->bresenham(QPoint(x1->value(), y1->value()), QPoint(x2->value(), y2->value()));
     auto stop = std::chrono::steady_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
-    qDebug() << "time by bresenham method: " << duration.count() << "ns\n";
+    QTextStream out(stdout);
+    out << "time by bresenham method: " << duration.count() << "ns\n";
     plane->show();
 }
 
@@ -105,7 +109,8 @@ void MainWindow::circle()
     plane->circle(QPoint(x1->value(), y1->value()), r->value());
     auto stop = std::chrono::steady_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
-    qDebug() << "time by bresenham circle method: " << duration.count() << "ns\n";
+    QTextStream out(stdout);
+    out << "time by bresenham circle method: " << duration.count() << "ns\n";
     plane->show();
 }
 
