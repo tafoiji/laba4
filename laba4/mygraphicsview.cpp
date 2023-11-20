@@ -5,7 +5,7 @@
 #include <mygraphicsview.h>
 
 
-MyGraphicsView:: MyGraphicsView(QGraphicsScene* scene, QWidget* parent) : QGraphicsView(parent)
+MyGraphicsView:: MyGraphicsView(QGraphicsScene* scene, QWidget* parent) : QGraphicsView(parent), cntScale(1)
     {
         setScene(scene);
         setRenderHint(QPainter::Antialiasing);
@@ -19,9 +19,16 @@ MyGraphicsView:: MyGraphicsView(QGraphicsScene* scene, QWidget* parent) : QGraph
         qreal scaleFactor = 1.15;
 
         if (event->delta() > 0)
+        {
             scale(scaleFactor, scaleFactor);
-        else
+            cntScale++;
+        }
+
+        else if (cntScale > 0)
+        {
             scale(1 / scaleFactor, 1 / scaleFactor);
+            cntScale--;
+        }
     }
 
 

@@ -13,6 +13,8 @@ public:
     ~MyGraphicsView();
 protected:
     void wheelEvent(QWheelEvent* event) override;
+private:
+    int cntScale;
 };
 
 #endif // MYGRAPHICSVIEW_H
